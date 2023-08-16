@@ -3,8 +3,8 @@ import os
 import random
 mydb = mysql.connector.connect(
   host="localhost",
-  user="jwad",
-  password="jwad4512",
+  user="bank_agent",
+  password="bank_agent",
   database="bank_system"
 )
 mycursor = mydb.cursor()
