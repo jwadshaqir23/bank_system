@@ -31,7 +31,9 @@ message = Mail(
     subject='jwad bank system verfying email',
     html_content=verfiy_code_number)
 try:
-    sg = SendGridAPIClient('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')
+    import os
+    secret_value = os.environ['EMAIL_API']
+    sg = SendGridAPIClient(secret_value)
     response = sg.send(message)
     print(response.status_code)
     print(response.body)
