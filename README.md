@@ -4,7 +4,7 @@ hi this is my first offcial python app
 
 this app like bank system app
 
-that have to sections ,one for default users and one for mangment user
+that have 2 sections ,one for default users and one for mangment user
 
 the both are under devlopment and every updates will shows here and will up to github
 
