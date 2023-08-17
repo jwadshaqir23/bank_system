@@ -25,7 +25,7 @@ the mangment users haves:
 
 under devlopment for now not have any thing 
 
-## in the future the app must have a interface "but for now it`s not my from my experince"
+## in the future the app must have a interface "but for now it`s not from my experince"
 
 # to run/test the app
 first you need to have a mysql server local/online
