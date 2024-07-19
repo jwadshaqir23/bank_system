@@ -1,6 +1,6 @@
 from login_system import login_user
 pos = "_history_miuns"
-GREEN = "\033[91m"
+RED = "\033[91m"
 RESET = "\033[0m"
 import mysql.connector
 import os
@@ -14,6 +14,11 @@ mycursor = mydb.cursor()
 
 def print_colored_text(color, text):
     print(f"{color}{text}{RESET}")
+
+def check_if_there_is_history():
+    mycursor.execute(f"SELECT EXISTS(SELECT 1 FROM {login_user+pos} LIMIT 1)")
+    myresult = mycursor.fetchone()[0]
+    return myresult == 1
 
 def print_first_row():
     mycursor.execute(f"SELECT how_much FROM {login_user+pos} LIMIT 1")
@@ -44,7 +49,7 @@ def print_first_row():
         date = str(x_date[0])
 
     #print("$"+monney+"\nfrom:"+who+"\nreason:"+reason+"\ndate:"+date+"\n########################################")
-    print_colored_text(GREEN,"$"+monney+"\nto:"+pos_to_who+"\nreason:"+reason+"\ndate:"+date)
+    print_colored_text(RED,"$"+monney+"\nto:"+pos_to_who+"\nreason:"+reason+"\ndate:"+date)
     print("########################################")
 def print_other_rows():
     offset = 1
@@ -91,11 +96,17 @@ def print_other_rows():
 
         
         #print("$"+monney+"\nfrom:"+who+"\nreason:"+reason+"\ndate:"+date+"\n########################################")
-        print_colored_text(GREEN,"$"+monney+"\nto:"+pos_to_who+"\nreason:"+reason+"\ndate:"+date+"")
+        print_colored_text(RED,"$"+monney+"\nto:"+pos_to_who+"\nreason:"+reason+"\ndate:"+date+"")
         print("########################################")
         offset += 1  
 
 
-print_first_row()
-print_other_rows()
 
+
+has_data = check_if_there_is_history()
+if has_data == True:
+
+    print_first_row()
+    print_other_rows()
+if has_data == False:
+    print_colored_text(RED,"there is no any postive history in your account")
