@@ -27,7 +27,7 @@ def random_code_check_db(fun_code):
 random_code_check_db(random_code)
 def request_money():
     #
-    sql ="INSERT INTO req_mon_cod(username,req_code,cod_open_date) VALUES(%s,%s,%s)"
+    sql ="INSERT INTO req_mon_cod(username,req_code,code_open_date) VALUES(%s,%s,%s)"
     data = (login_user,random_code,"none for later")
     mycursor.execute(sql,data)
     mydb.commit()

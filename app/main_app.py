@@ -1,24 +1,8 @@
-import mysql.connector
 import os
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="bank_agent",
-  password="bank_agent",
-  database="bank_system"
-)
-mycursor = mydb.cursor()
 
-# from login_system import login_user
-# from first_app import welcome_print
-# print("welcome "+welcome_print)
-
-
-from login_system import login_user
-
-os.system("cls")
 
 choose_loop = True
-while choose_loop:
+def menu():
     #
   print("1;view balance")
   print("2;send money")
@@ -47,3 +31,7 @@ while choose_loop:
       print("undefined input ,try agin")
       input("hit any key to continue")
       os.system("cls")
+
+
+while choose_loop:
+    menu()

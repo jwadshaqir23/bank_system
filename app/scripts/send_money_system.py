@@ -36,7 +36,7 @@ while hoole_tran_loop:
             for x_user_balan in myresult:
             #
                 sys_user_balan = str(x_user_balan[0])
-            if tran_how_much > sys_user_balan:
+            if int(tran_how_much) > int(sys_user_balan):
                 print("with this much of money your money balance will be in the miuns")
                 print("are you sure to confirm that transaction?")
                 making_sure_of_tran = input("[yes/no]: ")
@@ -86,7 +86,7 @@ while hoole_tran_loop:
                                     mycursor.execute(sql,data)
                                     mydb.commit()
                                     #adding history for transacter
-                                    tran = "_history_tran"
+                                    tran = "_tran"
                                     database2_name = 'history_bank'
                                     database1_name = 'bank_system'
                                     mycursor.execute(f"USE {database2_name}")
@@ -124,7 +124,7 @@ while hoole_tran_loop:
                         print("ok ,see you later ")
                 if making_sure_of_tran == "no":
                     print("ok ,see you later")
-            if tran_how_much < sys_user_balan:
+            if int(tran_how_much) < int(sys_user_balan):
                 reason_of_tran = input("reason of transaction: ")
                 int_user_balance = int(sys_user_balan)
                 int_tran_how_much = int(tran_how_much)
@@ -170,7 +170,7 @@ while hoole_tran_loop:
                                 mycursor.execute(sql,data)
                                 mydb.commit()
                                 #adding history for transacter
-                                tran = "_history_tran"
+                                tran = "_tran"
                                 database2_name = 'history_bank'
                                 database1_name = 'bank_system'
                                 mycursor.execute(f"USE {database2_name}")
@@ -195,8 +195,9 @@ while hoole_tran_loop:
                                 mydb.commit()
                                 #deleting transaction code
                                 mycursor.execute(f"USE {database1_name}")
-                                sql_query = "DELETE FROM req_mon_cod WHERE req_code = %s"
-                                mycursor.execute(sql_query, (send_code,))
+                                sql_query = f"DELETE FROM req_mon_cod WHERE req_code = %s"
+                                #mycursor.execute(sql_query, send_code)
+                                mycursor.execute(f"DELETE FROM req_mon_cod WHERE req_code = '{send_code}'")
                                 mydb.commit()
                                 print("tranaction sucssesfully good!")
                                 verfiy_code_loop = False
