@@ -16,8 +16,3 @@ for x_user_balance in myresult:
 
     user_balance = str(x_user_balance[0])
 print("your balance:"+"$"+user_balance)
-
-input("hit any key to counitinue")
-
-mydb.close()
-mycursor.close()
